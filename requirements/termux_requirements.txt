@@ -1,0 +1,2 @@
+-r base_requirements.txt
+Pillow==6.1.0

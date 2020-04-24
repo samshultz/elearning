@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    {{ block.super }} - Delete "{{ course.title }}"
+{% endblock title %}
+
+
+{% block content %}
+    <div class="mdk-header-layout__content page-content ">
+            <div class="bg-gradient-primary border-bottom-white py-32pt">
+                    <div class="container d-flex flex-column flex-md-row align-items-center text-center text-md-left">
+                        <img src="{% static 'courses/images/delete.png' %}" width="104" class="mr-md-32pt mb-32pt mb-md-0" alt="instructor">
+                        <div class="flex mb-32pt mb-md-0">
+                            <h2 class="text-white mb-0">Delete course "{{ course.title }}"</h2>
+                            
+                        </div>
+                    </div>
+                </div>
+        
+                <div class="navbar navbar-expand-sm navbar-dark-white bg-gradient-primary p-sm-0 ">
+                    <div class="container page__container">
+        
+                        <!-- Navbar toggler -->
+                        <button class="navbar-toggler ml-n16pt" type="button" data-toggle="collapse" data-target="#navbar-submenu2">
+                            <span class="material-icons">people_outline</span>
+                        </button>
+        
+                    </div>
+                </div>
+                <div class="container page__container page-section">
+                    <form action="" method="post" class="text-center">
+                        {% csrf_token %}
+                        <p>Are you sure you want to delete "{{ course }}"?</p>
+                        <button type="submit" class="btn btn-accent">
+                                <i class="material-icons">delete_forever</i> Confirm
+                        </button>
+                    </form>
+                </div>
+    </div>
+{% endblock content %}
+    

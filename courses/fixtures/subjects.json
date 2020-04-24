@@ -1,0 +1,352 @@
+[
+{
+  "model": "courses.category",
+  "pk": 1,
+  "fields": {
+    "name": "Web Development",
+    "slug": "web-development"
+  }
+},
+{
+  "model": "courses.category",
+  "pk": 2,
+  "fields": {
+    "name": "Business",
+    "slug": "business"
+  }
+},
+{
+  "model": "courses.category",
+  "pk": 3,
+  "fields": {
+    "name": "Photography",
+    "slug": "photography"
+  }
+},
+{
+  "model": "courses.category",
+  "pk": 4,
+  "fields": {
+    "name": "Design",
+    "slug": "design"
+  }
+},
+{
+  "model": "courses.category",
+  "pk": 5,
+  "fields": {
+    "name": "Programming",
+    "slug": "programming"
+  }
+},
+{
+  "model": "courses.course",
+  "pk": 1,
+  "fields": {
+    "instructor": 2,
+    "category": 2,
+    "title": "Digital Marketing Secrets for Beginners",
+    "slug": "digital-marketing-secrets-for-beginners",
+    "overview": "Grow your Online presence in the Digital way and promote it in a Smart way",
+    "intro_video": "",
+    "difficulty_level": "beginner",
+    "learning_goals": "Digital Marketing",
+    "prerequisites": "",
+    "price": 2000,
+    "created": "2019-09-14T10:57:10.541Z",
+    "students": []
+  }
+},
+{
+  "model": "courses.course",
+  "pk": 2,
+  "fields": {
+    "instructor": 2,
+    "category": 5,
+    "title": "Machine Learning with Python",
+    "slug": "machine-learning-with-python",
+    "overview": "Welcome to Machine Learning with python.",
+    "intro_video": "",
+    "difficulty_level": "beginner",
+    "learning_goals": "",
+    "prerequisites": "",
+    "price": 1000,
+    "created": "2019-09-15T06:47:59.037Z",
+    "students": []
+  }
+},
+{
+  "model": "courses.course",
+  "pk": 3,
+  "fields": {
+    "instructor": 2,
+    "category": 2,
+    "title": "Digital Product Management: Modern Fundamentals",
+    "slug": "digital-product-management-modern-fundamentals",
+    "overview": "Being a Product Person today is a new game, and product managers are at the center of it.",
+    "intro_video": "",
+    "difficulty_level": "intermediate",
+    "learning_goals": "",
+    "prerequisites": "",
+    "price": 5000,
+    "created": "2019-09-15T06:53:00.575Z",
+    "students": []
+  }
+},
+{
+  "model": "courses.course",
+  "pk": 4,
+  "fields": {
+    "instructor": 2,
+    "category": 4,
+    "title": "Everyday Parenting: The ABCs of Child Rearing",
+    "slug": "everyday-parenting-the-abcs-of-child-rearing",
+    "overview": "It gives you access to a toolkit of behavior-change techniques that'll make your typical day easier",
+    "intro_video": "videos/intro/VID-20191213-WA0011.mp4",
+    "difficulty_level": "advanced",
+    "learning_goals": "<ul>\r\n\t<li>Learn C#, a powerful modern language, from scratch. No prior programming experience is necessary.</li>\r\n\t<li>Become excellent at using the Unity game engine.</li>\r\n\t<li>Build a solid foundation for game design and game development that will help you build your own games.</li>\r\n\t<li>Learn how object oriented programming works in practice.</li>\r\n\t<li>Create playable game projects - good for your portfolio, or just for your own sense of achievement.</li>\r\n\t<li>Transfer your knowledge from this course to .NET, other languages, and more.</li>\r\n\t<li>Develop highly transferable coding problem solving skills.</li>\r\n\t<li>Be part of an amazing and supportive community of people similar to you(</li>\r\n\t<li>Learn all the different kind of seletion techniques</li>\r\n\t<li>Master Masking to be able to seamlessly combine images together</li>\r\n\t<li>Learn how to retouch photos like a pro</li>\r\n\t<li>Understand the differences and pros/cons between different image file formats</li>\r\n\t<li>Learn useful keyboard shortcuts and best practices</li>\r\n\t<li>Learn Photoshop from the very beginning the way a professional would use it</li>\r\n</ul>",
+    "prerequisites": "<ul>\r\n\t<li>None</li>\r\n</ul>",
+    "price": 3000,
+    "created": "2019-09-15T06:59:11.135Z",
+    "students": []
+  }
+},
+{
+  "model": "courses.course",
+  "pk": 5,
+  "fields": {
+    "instructor": 2,
+    "category": 4,
+    "title": "Photoshop CC 2019 MasterClass",
+    "slug": "photoshop-cc-2019-masterclass",
+    "overview": "Master the worlds Best imaging and Design Application and Become an Adobe Certified Associate",
+    "intro_video": "",
+    "difficulty_level": "beginner",
+    "learning_goals": "<ul>\r\n\t<li>Learn all the different kind of seletion techniques</li>\r\n\t<li>Master Masking to be able to seamlessly combine images together</li>\r\n\t<li>Learn how to retouch photos like a pro</li>\r\n\t<li>Understand the differences and pros/cons between different image file formats</li>\r\n\t<li>Learn useful keyboard shortcuts and best practices</li>\r\n\t<li>Learn Photoshop from the very beginning the way a professional would use it</li>\r\n</ul>",
+    "prerequisites": "<ul>\r\n\t<li>Any version of Adobe Photoshop, preferably not older than Photoshop CS6. Ideally Photoshop CC(Creative Cloud).</li>\r\n\t<li>Prior knowledge is not needed Exercise files and study guides are provided</li>\r\n</ul>",
+    "price": 300,
+    "created": "2019-09-15T07:08:58.826Z",
+    "students": []
+  }
+},
+{
+  "model": "courses.course",
+  "pk": 6,
+  "fields": {
+    "instructor": 2,
+    "category": 5,
+    "title": "Java Tutorials for complete beginners",
+    "slug": "java-tutorials-for-complete-beginners",
+    "overview": "Learn to program using the Java programming language",
+    "intro_video": "videos/intro/Alessia_Cara_-_Scars_To_Your_Beautiful.mp4",
+    "difficulty_level": "beginner",
+    "learning_goals": "<ul>\r\n\t<li>Learn to program in Java</li>\r\n\t<li>Build professional apps in Java</li>\r\n\t<li>5 apps to add to your resume</li>\r\n</ul>",
+    "prerequisites": "<ul>\r\n\t<li>Basic fluency with computers</li>\r\n\t<li>A computer</li>\r\n\t<li>A willingness to do what it takes</li>\r\n</ul>",
+    "price": 100,
+    "created": "2019-09-15T07:12:43.437Z",
+    "students": []
+  }
+},
+{
+  "model": "courses.section",
+  "pk": 1,
+  "fields": {
+    "course": 6,
+    "title": "Introduction",
+    "description": "An introduction to the course content",
+    "order": 1
+  }
+},
+{
+  "model": "courses.section",
+  "pk": 2,
+  "fields": {
+    "course": 6,
+    "title": "Programming Core Java",
+    "description": "Introduction to the basic fundamentals of the Java Programming language",
+    "order": 2
+  }
+},
+{
+  "model": "courses.content",
+  "pk": 3,
+  "fields": {
+    "section": 1,
+    "content_type": 14,
+    "object_id": 7,
+    "order": 0
+  }
+},
+{
+  "model": "courses.content",
+  "pk": 4,
+  "fields": {
+    "section": 2,
+    "content_type": 16,
+    "object_id": 1,
+    "order": 0
+  }
+},
+{
+  "model": "courses.content",
+  "pk": 5,
+  "fields": {
+    "section": 1,
+    "content_type": 16,
+    "object_id": 2,
+    "order": 1
+  }
+},
+{
+  "model": "courses.content",
+  "pk": 6,
+  "fields": {
+    "section": 1,
+    "content_type": 17,
+    "object_id": 2,
+    "order": 2
+  }
+},
+{
+  "model": "courses.content",
+  "pk": 7,
+  "fields": {
+    "section": 1,
+    "content_type": 15,
+    "object_id": 3,
+    "order": 3
+  }
+},
+{
+  "model": "courses.text",
+  "pk": 3,
+  "fields": {
+    "owner": 2,
+    "title": "What is Java?",
+    "created": "2019-12-10T12:55:36.163Z",
+    "updated": "2019-12-10T12:55:36.163Z",
+    "content": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.\r\n\r\nIt is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like)."
+  }
+},
+{
+  "model": "courses.file",
+  "pk": 1,
+  "fields": {
+    "owner": 2,
+    "title": "upload a file that's not an image or video",
+    "created": "2019-09-15T20:56:01.961Z",
+    "updated": "2019-09-15T20:56:01.961Z",
+    "file": "files/django-constance.pdf"
+  }
+},
+{
+  "model": "courses.file",
+  "pk": 2,
+  "fields": {
+    "owner": 2,
+    "title": "hello",
+    "created": "2019-09-15T21:10:48.625Z",
+    "updated": "2019-09-15T21:10:48.625Z",
+    "file": "files/BONUS_--_The_Toolbox_--_Capital_Attraction_Secrets_Course_--_ver1.0_uWJXCCN.pdf"
+  }
+},
+{
+  "model": "courses.file",
+  "pk": 3,
+  "fields": {
+    "owner": 2,
+    "title": "hello",
+    "created": "2019-09-15T21:12:04.164Z",
+    "updated": "2019-09-15T21:12:04.164Z",
+    "file": "files/BONUS_--_The_Toolbox_--_Capital_Attraction_Secrets_Course_--_ver1.0_FLWjJAj.pdf"
+  }
+},
+{
+  "model": "courses.file",
+  "pk": 4,
+  "fields": {
+    "owner": 2,
+    "title": "hello",
+    "created": "2019-09-15T21:23:14.167Z",
+    "updated": "2019-09-15T21:23:14.167Z",
+    "file": "files/django-constance_vbARbU6.pdf"
+  }
+},
+{
+  "model": "courses.file",
+  "pk": 5,
+  "fields": {
+    "owner": 2,
+    "title": "hello",
+    "created": "2019-09-15T21:31:26.487Z",
+    "updated": "2019-09-15T21:31:26.487Z",
+    "file": "files/Backlinksss.pdf"
+  }
+},
+{
+  "model": "courses.file",
+  "pk": 6,
+  "fields": {
+    "owner": 2,
+    "title": "hello",
+    "created": "2019-09-15T21:34:53.044Z",
+    "updated": "2019-09-15T21:34:53.044Z",
+    "file": "files/BONUS_--_The_Toolbox_--_Capital_Attraction_Secrets_Course_--_ver1.0_q9FHhog.pdf"
+  }
+},
+{
+  "model": "courses.file",
+  "pk": 7,
+  "fields": {
+    "owner": 2,
+    "title": "Advanced BlackBerry Development",
+    "created": "2019-09-18T07:32:44.417Z",
+    "updated": "2019-12-09T20:19:54.978Z",
+    "file": "files/Practical_Machine_Learning_with_Python.pdf"
+  }
+},
+{
+  "model": "courses.image",
+  "pk": 1,
+  "fields": {
+    "owner": 2,
+    "title": "An explanatory image",
+    "created": "2019-09-18T07:34:48.512Z",
+    "updated": "2019-09-18T07:34:48.513Z",
+    "file": "images/2017-tesla-model-s-p90d-inline1-photo-667609-s-original.jpg"
+  }
+},
+{
+  "model": "courses.image",
+  "pk": 2,
+  "fields": {
+    "owner": 2,
+    "title": "what you should expect",
+    "created": "2019-12-09T20:43:48.409Z",
+    "updated": "2019-12-09T20:43:48.409Z",
+    "file": "images/Screenshot_96.png"
+  }
+},
+{
+  "model": "courses.video",
+  "pk": 1,
+  "fields": {
+    "owner": 2,
+    "title": "hello",
+    "created": "2019-09-17T18:44:06.810Z",
+    "updated": "2019-09-17T18:44:06.810Z",
+    "url": "https://anawesomevideo.com"
+  }
+},
+{
+  "model": "courses.video",
+  "pk": 2,
+  "fields": {
+    "owner": 2,
+    "title": "Introductory video to Java",
+    "created": "2019-12-10T12:49:54.033Z",
+    "updated": "2019-12-10T12:49:54.033Z",
+    "url": "https://youtu.be/eIrMbAQSU34"
+  }
+}
+]

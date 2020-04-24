@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% load static widget_tweaks %}
+
+{% block title %}
+    Edit - {{ course.title }} - {{ block.super }}
+{% endblock title %}
+
+
+{% block content %}
+    
+    <div class="mdk-header-layout__content page-content ">
+            <div class="bg-gradient-primary border-bottom-white py-32pt">
+                    <div class="container d-flex flex-column flex-md-row align-items-center text-center text-md-left">
+                        <img src="{% static 'courses/images/illustration/teacher/128/white.svg' %}" width="104" class="mr-md-32pt mb-32pt mb-md-0" alt="instructor">
+                        <div class="flex mb-32pt mb-md-0">
+                            <h2 class="text-white mb-0">Add A Module to course "{{ course.title }}"</h2>
+                            
+                        </div>
+                    </div>
+                </div>
+        
+                <div class="navbar navbar-expand-sm navbar-dark-white bg-gradient-primary p-sm-0 ">
+                    <div class="container page__container">
+        
+                        <!-- Navbar toggler -->
+                        <button class="navbar-toggler ml-n16pt" type="button" data-toggle="collapse" data-target="#navbar-submenu2">
+                            <span class="material-icons">people_outline</span>
+                        </button>
+        
+                    </div>
+                </div>
+                <div class="bg-white pt-32pt pt-sm-64pt pb-32pt">
+                        <div class="container page__container">
+                            {% if form.errors %}
+                                <div class="alert alert-danger">
+                                   <p>{{ form.errors }}</p>
+                                </div>
+                            {% endif %}
+                            <form action="." class="col-md-5 p-0 mx-auto" method="POST">
+                            	{{ form.media }}
+                                {% csrf_token %}
+                                
+                                <div class="form-group">
+                                    <label for="email">Title:</label>
+                                    {% render_field section_form.title|add_class:"form-control" placeholder="Title of the module" %}
+                                </div>
+                                <div class="form-group">
+                                    <label for="password">Description:</label>
+                                    {% render_field section_form.description|add_class:"form-control" placeholder="Brief Description of the module..." rows=3 %}
+                                    
+                                </div>
+                                <div class="form-group">
+                                    <!-- <label for="password">Course:</label> -->
+                                    {% render_field section_form.course|add_class:"form-control" %}
+                                    
+                                </div>
+                                
+                                <div class="text-center">
+                                    <button class="btn btn-lg btn-accent" type="submit">Save</button>
+                                    <button class="btn btn-lg btn-outline-primary" type="submit">Save and add another</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+    </div>
+{% endblock content %}
+    

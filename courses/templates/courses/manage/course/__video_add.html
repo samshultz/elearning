@@ -1,0 +1,37 @@
+<div class="card card--raised" id="video-{{ section_id }}" style="display: none">
+        <div class="card-header d-flex align-items-center">
+            <div class="flex">
+                <h4 class="card-title">Add a video(either Video URL or upload a File) to this Module</h4>
+            </div>
+            
+        </div>
+        <div class="card-body">
+                <div class="row">
+                        <div class="col-md-8">
+        
+                            <form data-action="{% url 'course-content-add' course_id=course_id section_id=section_id model_name='video' %}" action="{% url 'module_content_create' section_id 'video' %}" method="post" id="videoform-{{ section_id }}">
+                                {% csrf_token %}
+                                <div class="alert alert-light border-1 border-left-4 border-left-accent" role="alert">
+                                    <strong>Well done!</strong>
+                                    You successfully read this important alert message.
+                                  </div>
+                                <div class="form-group">
+                                    <label for="video-title">Title:</label>
+                                    <input type="text" name="title" id="video-title" placeholder="Title of the video..." class="form-control">
+                                </div>
+                                <div class="form-group m-0">
+                                        <label for="video-url">Video URL:</label>
+                                    <input type="url" name="url" id="video-url" placeholder="URL of the video" class="form-control">
+                                </div>
+                                <div class="form-group m-0">
+                                    
+                                    <label for="file">Choose file:</label>
+                                    <input type="file" name="file" class="form-control">
+                                   
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+            <a href="#" class="btn btn-accent mt-3 float-right videosubmitbtn" data-id="videoform-{{ section_id }}">Add</a>
+        </div>
+    </div>

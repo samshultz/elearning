@@ -1,0 +1,39 @@
+<div class="card card--raised" id="file-{{ section_id }}" style="display: none">
+        <div class="card-header d-flex align-items-center">
+            <div class="flex">
+                <h4 class="card-title">Add a file to this Module</h4>
+                <p class="card-subtitle">Files such as doc and docx, PDF, TXT, HTML, XLS, XLSX, etc.</p>
+            </div>
+            <div class="dropdown">
+                <a href="#" class="dropdown-toggle" data-caret="false" data-toggle="dropdown">
+                    <i class="material-icons">more_horiz</i>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right">
+                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item" href="#">Another action</a>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-8">
+
+                    <form data-action="{% url 'course-content-add' course_id=course_id section_id=section_id model_name='file' %}" action="{% url 'module_content_create' section_id 'file' %}" method="post" id="fileform-{{ section_id }}">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="email">Title:</label>
+                            <input type="text" name="title" id="file-title" placeholder="Title of the file..." class="form-control">
+                        </div>
+                        <div class="form-group m-0">
+                            <div class="custom-file">
+                                <input type="file" name="file" id="file-object" class="custom-file-input">
+                                <label for="file" class="custom-file-label">Choose file</label>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <a href="#" class="btn btn-accent float-right mt-3 filesubmitbtn" data-id="fileform-{{ section_id }}">Add</a>
+        </div>
+    </div>

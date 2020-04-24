@@ -1,0 +1,173 @@
+{% extends 'base.html' %}
+{% load static socialaccount %}
+{% load widget_tweaks %}
+
+{% providers_media_js %}
+
+{% block title %}
+    {{ block.super }} - Signup
+{% endblock title %}
+
+{% block header %}
+    <div id="header" class="mdk-header bg-dark js-mdk-header mb-0" data-effects="waterfall blend-background" data-fixed data-condenses>
+            <div class="mdk-header__content">
+
+                <div data-primary class="navbar navbar-expand-sm navbar-dark bg-dark p-0" id="default-navbar">
+                    <div class="container">
+
+                        <!-- Navbar Brand -->
+                        <a href="{% url 'home' %}" class="navbar-brand">
+                            <img class="navbar-brand-icon" src="{% static 'courses/images/logo/white-100@2x.png' %}" width="30" alt="Tutorio">
+                            <span class="d-none d-md-block">Tutorio</span>
+                        </a>
+
+                        <!-- Main Navigation -->
+                        <ul class="nav navbar-nav ml-auto d-none d-sm-flex">
+                            
+                            <li class="nav-item active">
+                                <a href="{% url 'account_signup' %}" class="nav-link">Signup</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{% url 'account_login' %}" class="nav-link">Login</a>
+                            </li>
+                        </ul>
+                        <!-- // END Main Navigation -->
+
+                        <!-- Navbar toggler -->
+                        <button class="navbar-toggler navbar-toggler-right d-block d-md-none" type="button" data-toggle="sidebar">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+{% endblock header %}
+
+{% block content %}
+<div class="py-64pt bg-gradient-primary">
+        <div class="container d-flex flex-column flex-md-row align-items-center text-center text-md-left">
+            <img src="{% static 'courses/images/illustration/student/128/white.svg' %}" class="mr-md-32pt mb-32pt mb-md-0" alt="student">
+            <div class="flex mb-32pt mb-md-0">
+                <h1 class="text-white mb-8pt">Sign Up</h1>
+                <p class="lead measure-lead text-white-50">Change your future today with over 1.000 professional courses from the top industry leading teachers and professionals.</p>
+            </div>
+            <a href="{% url 'account_login' %}" class="btn btn-outline-white flex-column">
+               Already have an account?
+                <span class="btn__secondary-text">Sign in</span>
+            </a>
+        </div>
+    </div>
+    <!-- <div class="py-32pt navbar-submenu">
+        <div class="container page__container">
+            <div class="progression-bar progression-bar--active-accent">
+                <a href="pricing.html" class="progression-bar__item progression-bar__item--complete">
+                    <span class="progression-bar__item-content">
+                        <i class="material-icons progression-bar__item-icon">done</i>
+                        <span class="progression-bar__item-text h5 mb-0 text-uppercase">Pricing</span>
+                    </span>
+                </a>
+                <a href="signup.html" class="progression-bar__item progression-bar__item--complete progression-bar__item--active">
+                    <span class="progression-bar__item-content">
+                        <i class="material-icons progression-bar__item-icon"></i>
+                        <span class="progression-bar__item-text h5 mb-0 text-uppercase">Account details</span>
+                    </span>
+                </a>
+                <a href="signup-payment.html" class="progression-bar__item">
+                    <span class="progression-bar__item-content">
+                        <i class="material-icons progression-bar__item-icon"></i>
+                        <span class="progression-bar__item-text h5 mb-0 text-uppercase">Payment details</span>
+                    </span>
+                </a>
+            </div>
+        </div>
+    </div> -->
+
+    <div class="bg-white py-32pt py-lg-64pt">
+        <div class="container page__container">
+            <div class="col-lg-10 p-0 mx-auto">
+                <div class="row">
+                    <div class="col-md-6 mb-24pt mb-md-0">
+                        <form action="{% url 'account_signup' %}" method="POST">
+                            {% if form.errors %}
+                                <div class="alert alert-danger">
+                                    {{ form.errors }}
+                                </div>
+                            {% else %}
+                            {% endif %}
+                            {% csrf_token %}
+
+                            <div class="form-group">
+                                <input type="hidden" name="usertype" class="form-control" value="Instructors">
+                            </div>
+                            <div class="form-group">
+                                    <label for="name">Last name:</label>
+                                    {% render_field form.last_name|add_class:"form-control" placeholder="Last name" %}
+                                </div>
+                                <div class="form-group">
+                                        <label for="name">Other names:</label>
+                                        {% render_field form.first_name|add_class:"form-control" placeholder="Other names" %}
+                                    </div>
+                            <div class="form-group">
+                                <label for="name">Username:</label>
+                                {% render_field form.username|add_class:"form-control" %}
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Your email:</label>
+                                {% render_field form.email|add_class:"form-control" %}
+                            </div>
+                            <div class="form-group mb-24pt">
+                                <label for="password">Password:</label>
+                                {% render_field form.password1|add_class:"form-control" %}
+                            </div>
+                            <div class="form-group mb-24pt">
+                                <label for="password">Password(Confirm):</label>
+                                {% render_field form.password2|add_class:"form-control" %}
+                            </div>
+                            {% if redirect_field_value %}
+                                <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+                            {% endif %}
+                            <button class="btn btn-lg btn-accent">Create account</button>
+                        </form>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card mb-0">
+                            <div class="card-body">
+                                <h5>Summary</h5>
+                                <div class="d-flex mb-8pt">
+                                    <div class="flex"><strong class="text-70">Knowledge</strong></div>
+                                    <strong>Student</strong>
+                                </div>
+                                <div class="d-flex mb-16pt pb-16pt border-bottom">
+                                    <span class="material-icons text-muted mr-8pt">check</span>
+                                    <span class="text-70">Access to over 1.000 premium courses at cheaper prices. For individuals.</span>
+                                </div>
+                                
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" checked id="topic-all">
+                                    <label class="custom-control-label">Terms and conditions</label>
+                                    <small class="form-text text-muted">By checking here and continuing, I agree to the Tutorio Terms of Use</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="page-separator m-0">
+        <div class="page-separator__text">or sign-in with</div>
+        <div class="page-separator__bg-top bg-white"></div>
+    </div>
+    <div class="bg-body pt-32pt pb-32pt pb-md-64pt text-center">
+        <div class="container page__container">
+            <a href="{% provider_login_url "facebook" method='oauth2' %}" class="btn btn-lg btn-secondary btn-block-xs">Facebook</a>
+            <a href="signup-payment.html" class="btn btn-lg btn-secondary btn-block-xs">Twitter</a>
+            <a href="{% provider_login_url "google" method='oauth2' %}"class="btn btn-lg btn-secondary btn-block-xs">Google+</a>
+        </div>
+    </div>
+{% endblock content %}
+    

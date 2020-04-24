@@ -1,0 +1,43 @@
+{% load static %}
+<div class="card card--raised" id="image-{{ section_id }}" style="display: none">
+        <div class="card-header d-flex align-items-center">
+            <div class="flex">
+                <h4 class="card-title">Add an image to this module</h4>
+                <p class="card-subtitle">Only JPEG, PNG and GIF are supported</p>
+            </div>
+            <div class="dropdown">
+                <a href="#" class="dropdown-toggle" data-caret="false" data-toggle="dropdown">
+                    <i class="material-icons">more_horiz</i>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right">
+                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item" href="#">Another action</a>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+                <div class="row">
+                        <div class="col-md-8">
+        
+                            <form data-action="{% url 'course-content-add' course_id=course_id section_id=section_id model_name='image' %}" action="{% url 'module_content_create' section_id 'image' %}" method="post" id="imageform-{{ section_id }}">
+                                {% csrf_token %}
+                                <div class="form-group">
+                                    <label for="image-title">Title:</label>
+                                    <input type="text" name="title" id="image-title" placeholder="Title of the image..." class="form-control">
+                                </div>
+                                <div class="form-group m-0">
+                                    <div class="custom-file">
+                                        <input type="file" name="file" class="image-object custom-file-input" accept=".jpeg,.png,.JPEG,.PNG,.gif,.GIF" data-preview="preview-img-{{ section_id }}">
+                                        <label for="file" class="custom-file-label">Choose Image</label>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-md-4">
+                            <img src="{% static 'courses/images/no_image.png' %}" alt="" class="img-fluid" id="preview-img-{{ section_id }}">
+                        </div>
+                    </div>
+            <a href="#" class="btn btn-accent mt-3 float-right imagesubmitbtn" data-id="imageform-{{ section_id }}">Add</a>
+        </div>
+    </div>

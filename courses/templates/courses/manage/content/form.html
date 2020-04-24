@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+
+{% block title %}
+    
+    {% if object %}
+        Edit content "{{ object.title }}"
+    {% else %}
+        Add a new content
+    {% endif %}
+        
+{% endblock title %}
+{% block content %}
+<div class="mdk-header-layout__content page-content ">
+        <div class="bg-gradient-primary border-bottom-white py-32pt">
+                <div class="container d-flex flex-column flex-md-row align-items-center text-center text-md-left">
+                    <img src="{% static 'courses/images/illustration/teacher/128/white.svg' %}" width="104" class="mr-md-32pt mb-32pt mb-md-0" alt="instructor">
+                    <div class="flex mb-32pt mb-md-0">
+                        <h2 class="text-white mb-0">
+                            {% if object %}
+                                Edit content "{{ object.title }}"
+                            {% else %}
+                                Add a new content
+                            {% endif %}
+                        </h2>
+                        
+                    </div>
+                </div>
+            </div>
+    
+            <div class="navbar navbar-expand-sm navbar-dark-white bg-gradient-primary p-sm-0 ">
+                <div class="container page__container">
+    
+                    <!-- Navbar toggler -->
+                    <button class="navbar-toggler ml-n16pt" type="button" data-toggle="collapse" data-target="#navbar-submenu2">
+                        <span class="material-icons">people_outline</span>
+                    </button>
+    
+                </div>
+            </div>
+            <div class="bg-white pt-32pt pt-sm-64pt pb-32pt">
+                    <div class="container page__container">
+                        <form action="." class="col-md-5 p-0 mx-auto" method="POST" enctype="multipart/form-data">
+                            {% if form.errors %}
+                                <div class="alert alert-light border-1 border-left-4 border-left-accent" role="alert">
+                                   <p>{{ form.errors }}</p>
+                                </div>
+                            {% endif %}
+                            {% csrf_token %}
+                            
+                            <div class="form-group">
+                                <label for="email">Title:</label>
+                                {% render_field form.title|add_class:"form-control" placeholder="Title of the content" %}
+                            </div>
+                            
+                            {% if form.url and form.file %}
+                                
+                            <div class="form-group">
+                                <label for="password">Video File:</label>
+                                {% render_field form.file|add_class:"form-control" placeholder="select video" accept="video/*" %}
+                                
+                            </div>
+                            {% elif form.file %}
+                            <div class="form-group m-0">
+                                    <div class="custom-file">
+                                        {% render_field form.file|add_class:"custom-file-input" id="file" %}
+                                        <label for="file" class="custom-file-label">Choose file</label>
+                                    </div>
+                                </div>
+                            {% elif form.content %}
+                                <div class="form-group">
+                                        <label for="password">Description:</label>
+                                        {% render_field form.content|add_class:"form-control" placeholder="content here..." rows=5 %}
+                                        
+                                    </div>
+                            {% else %}
+                                {{ form }}
+                            {% endif %}
+                                
+                           
+                            <div class="text-center">
+                                <button class="btn btn-lg btn-accent" type="submit">Save</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+</div>
+
+{% endblock content %}
+    

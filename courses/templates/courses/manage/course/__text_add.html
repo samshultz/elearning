@@ -1,0 +1,39 @@
+<div class="card card--raised" id="text-{{ section_id }}" style="display: none">
+        <div class="card-header d-flex align-items-center">
+            <div class="flex">
+                <h4 class="card-title">Add a Text to this Module</h4>
+            </div>
+            <div class="dropdown">
+                <a href="#" class="dropdown-toggle" data-caret="false" data-toggle="dropdown">
+                    <i class="material-icons">more_horiz</i>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right">
+                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item" href="#">Another action</a>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+                <div class="row">
+                        <div class="col-md-8">
+        
+                            <form data-action="{% url 'course-content-add' course_id=course_id section_id=section_id model_name='text' %}" action="{% url 'module_content_create' section_id 'text' %}" method="post" id="textform-{{ section_id }}">
+                                {% csrf_token %}
+                                <div class="form-group">
+                                    <label for="text-title">Title:</label>
+                                    <input type="text" name="title" id="text-title" placeholder="Title of the Text..." class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="text-content">Content</label>
+                                   <textarea name="content" rows="3" id="text-content-{{ section_id }}" class="form-control" placeholder="Content goes here..." data-toggle="quill"></textarea>
+                                </div>
+                                
+                            </form>
+                        </div>
+                    </div>
+            <a href="#" class="btn btn-accent textsubmitbtn" data-id="textform-{{ section_id }}">Add</a>
+        </div>
+    </div>
+
+    

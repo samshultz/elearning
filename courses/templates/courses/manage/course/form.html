@@ -1,0 +1,396 @@
+{% extends "base.html" %}
+{% load static widget_tweaks course %}
+
+{% block title %}
+    {% if object %}
+        {{ block.super }} - Edit course "{{ object.title }}"
+    {% else %}
+        {{ block.super }} - Create a new course
+    {% endif %}
+{% endblock title %}
+
+
+{% block stylesheets %}
+   
+{% endblock stylesheets %}
+    
+{% block content %}
+    <div class="bg-gradient-primary border-bottom-white py-32pt">
+                <div class="container d-flex flex-column flex-md-row align-items-center text-center text-md-left">
+                    <img src="{% static 'courses/images/illustration/teacher/128/white.svg' %}" width="104" class="mr-md-32pt mb-32pt mb-md-0" alt="instructor">
+                    <div class="flex mb-32pt mb-md-0">
+                        <h2 class="text-white mb-0">{{ request.user.get_full_name }}</h2>
+                        <p class="lead text-white-50 d-flex align-items-center">Instructor <span class="ml-16pt d-flex align-items-center"><i class="material-icons icon-16pt mr-4pt">opacity</i> 2,300 IQ</span></p>
+                    </div>
+                    <a href="student-edit-account.html" class="btn btn-outline-white">Edit account</a>
+                </div>
+    </div>
+
+            <div class="navbar navbar-expand-sm navbar-dark-white bg-gradient-primary p-sm-0 ">
+                <div class="container page__container">
+
+                    <!-- Navbar toggler -->
+                    <button class="navbar-toggler ml-n16pt" type="button" data-toggle="collapse" data-target="#navbar-submenu2">
+                        <span class="material-icons">people_outline</span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navbar-submenu2">
+                        <div class="navbar-collapse__content pb-16pt pb-sm-0">
+                            <ul class="nav navbar-nav">
+
+                                <li class="nav-item">
+                                    <a href="instructor-dashboard.html" class="nav-link">Dashboard</a>
+                                </li>
+                                <li class="nav-item dropdown active">
+                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Manage</a>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="{% url 'manage_course_list' %}">Courses</a>
+                                        <a class="dropdown-item" href="instructor-quizzes.html">Quizzes</a>
+                                        <a class="dropdown-item active" href="instructor-edit-course.html">Edit Course</a>
+                                        <a class="dropdown-item" href="instructor-edit-quiz.html">Edit Quiz</a>
+                                    </div>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Reports</a>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="instructor-earnings.html">Earnings</a>
+                                        <a class="dropdown-item" href="instructor-statement.html">Statement</a>
+                                    </div>
+                                </li>
+
+                            </ul>
+                            <ul class="nav navbar-nav ml-auto">
+                                <li class="nav-item">
+                                    <a href="instructor-profile.html" class="nav-link">Profile</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        <form method="POST" action="."  enctype="multipart/form-data">
+            {{ form.media }}
+            {% if form.errors %}
+                <div class="alert alert-danger">
+                    {{ form.errors }}
+                </div>
+            {% endif %}
+                
+            {% csrf_token %}
+             <div class="page-section bg-white border-bottom-2">
+                <div class="container page__container">
+                    <div class="row align-items-center">
+                        <div class="col-md-8">
+                            <h4>Course title</h4>
+                            <div class="form-group">
+                                {% render_field form.title|add_class:"form-control form-control-lg" placeholder="Course title" %}
+                            </div>
+                            <div class="form-group">
+
+                                <h4>Overview</h4>
+                                {% render_field form.overview|add_class:"form-control" rows=3 placeholder="Course Overview goes here..." maxlength=100 %}
+                                
+                            </div>
+                            <div class="form-group">
+                                <h4>Course Prerequisites</h4>
+                                {{ form.prerequisites|add_class:"form-control" }}
+                            </div>
+                            <h4>Learning goals</h4>
+                            {% render_field form.learning_goals placeholder="What will the student benefit from taking this course..." %}
+                        
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card m-0">
+                                <div class="card-header text-center">
+                                    <input type="submit" class="btn btn-accent" value="Save Course">
+                                </div>
+                                <div class="list-group list-group-flush">
+                                    <div class="list-group-item d-flex">
+                                        <a class="flex" href="#"><strong>Save Draft</strong></a>
+                                        <i class="material-icons text-muted">check</i>
+                                    </div>
+                                    
+                                    {% if course %}
+                                        <div class="list-group-item">
+                                            <a href="{% url 'course_delete' course.id %}" class="text-danger"><strong>Delete Course</strong></a>
+                                        </div>
+                                    {% endif %}
+                                        
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container page__container page-section">
+                <div class="row">
+                    <div class="col-md-8" id="modules">
+
+                        <div class="mb-heading d-flex align-items-center">
+                            <h4 class="flex mb-0">Modules</h4>
+                            <a href="#" class="text-underline">Change order</a>
+                        </div>
+                        
+                        {% for section in course.sections.all %}
+                        <div class="card stack" data-id="{{ section.id }}">
+                            <div class="card-header">
+                                <h4 class="card-title mb-0">{{ section.title }}</h4>
+                            </div>
+                            <ul class="list-group list-group-flush module-contents">
+                                
+                                {% for content in section.contents.all %}
+                                <li class="list-group-item" data-id="{{ content.id }}">
+                                    
+                                    {% if content.item|model_name == "video" %}
+                                    <span class="material-icons icon-16pt icon--left text-body">play_circle_outline</span>
+                                    {% elif content.item|model_name == "file" %}
+                                    <span class="material-icons icon-16pt icon--left text-body">attach_file</span>
+                                    {% elif content.item|model_name == "image" %}
+                                    <span class="material-icons icon-16pt icon--left text-body">image</span>
+                                    {% elif content.item|model_name == "text" %}
+                                    <span class="material-icons icon-16pt icon--left text-body">note</span>
+                                        
+                                    {% endif %}
+                                        
+                                    {{ content.item.title }}
+                                    <div class="float-right">
+
+                                        <a href="{% url 'module_content_update' section.id content.item|model_name content.item.id %}" 
+                                           class="text-underline">Edit</a>
+                                        <form action="{% url 'module_content_delete' content.id %}" method="post" style="display: inline">
+                                            {% csrf_token %}
+                                            <input type="submit" value="Delete" class="text-underline btn btn-link">
+                                        </form>
+                                    </div>
+                                </li>
+                                {% endfor %}
+                                <li class="list-group-item last-item-{{ section.id }}">
+                                    Add new content to this module by clicking any of the button below:
+                                    <br>
+                                    <a href="{% url 'module_content_create' section.id 'file' %}" class="contenttype" data-type="file" data-id="file-{{ section.id }}">
+                                        <span class="badge badge-pill badge-primary">
+                                            <i class="material-icons text-muted">insert_drive_file</i>
+                                            Add a File
+                                        </span>
+                                    </a>
+                                    
+                                    <a href="{% url 'module_content_create' section.id 'image' %}" class="contenttype" data-id="image-{{ section.id }}">
+                                        <span class="badge badge-pill badge-secondary">
+                                            <i class="material-icons text-muted">image</i>
+                                            Add an Image
+                                        </span>
+                                    </a>
+                                    <a href="{% url 'module_content_create' section.id 'video' %}" class="contenttype" data-id="video-{{ section.id }}">
+                                        <span class="badge badge-pill badge-primary">
+                                            <i class="material-icons text-muted">video_library</i>
+                                            Add a Video
+                                        </span>
+                                    </a>
+                                    <a href="{% url 'module_content_create' section.id 'text' %}" class="contenttype" data-id="text-{{ section.id }}">
+                                        <span class="badge badge-pill badge-secondary">
+                                            <i class="material-icons text-muted">text_format</i>
+                                            Add a Text
+                                        </span>
+                                    </a>
+                                </li>
+                                <li class="list-group-item">
+                                    {% include './__file_add.html' with section_id=section.id course_id=course.id only %}
+                                    {% include './__image_add.html' with section_id=section.id course_id=course.id only %}
+                                    {% include './__video_add.html' with section_id=section.id course_id=course.id only %}
+                                    {% include './__text_add.html' with section_id=section.id course_id=course.id only %}
+                                </li>
+                            </ul>
+                        </div>
+
+                        {% empty %}
+                            <div class="card stack">
+                                <div class="card-header">
+                                    <p>No Modules yet. click the button below to add a module.</p>
+                                </div>
+                            </div>
+                        {% endfor %}
+      {% if course %}             
+                        <a href="{% url 'course_module_update' course.id %}" class="btn btn-outline-secondary mb-24pt mb-sm-0">Add Module</a>
+       {% endif %}
+                    </div>
+                    <div class="col-md-4">
+
+                        <div class="mb-heading d-flex align-items-center">
+                            <h4 class="flex mb-0">Course preview video</h4>
+                            
+                            <a href="#" class="text-underline" id="intro-video-upload">{% if form.instance.intro_video %}Change Intro Video{% else %}Add Intro Video{% endif %}</a>
+                        </div>
+                        <div class="d-none">
+                            
+                            {% render_field form.intro_video accept="video/*" %}
+                        </div>
+                        <div class="card">
+                            <div class="embed-responsive embed-responsive-16by9">
+ 
+                                <iframe preload="metadata" class="embed-responsive-item" id="intro-video-preview" src="{% if form.instance.intro_video %}{{ form.instance.intro_video.url }}#t=0.5{% else %}https://youtu.be/v0W-VbVqsu4{% endif %}" allowfullscreen=""></iframe>
+                            </div>
+                        </div>
+
+                        <div class="mb-heading d-flex align-items-center">
+                            <h4 class="flex mb-0">Course Options</h4>
+                            <a href="#" class="text-underline">Add</a>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-body">
+
+                                <div class="form-group">
+                                    <label>Category</label>
+                                    {% render_field form.category|add_class:"form-control custom-select" %}
+                                    
+                                </div>
+                                <div class="form-group">
+                                    <label>Difficulty Level</label>
+                                    {% render_field form.difficulty_level|add_class:"form-control custom-select" %}
+                                    
+                                </div>
+                                <div class="form-group">
+                                    <label>Price</label>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="input-group form-inline">
+                                                <span class="input-group-prepend"><span class="input-group-text">$</span></span>
+                                                {{ form.price|add_class:"form-control" }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Tags</label>
+                                    {% render_field form.tags|add_class:"form-control" placeholder="enter, badges, here" %}
+                                    <small class="form-text text-muted">Separate tags with space or comma.</small>
+                                </div>
+
+                                <small class="text-muted">Your tags:</small>
+                                <a href="#" class="float-right"><small>Clear all</small></a>
+                                <div class="clearfix"></div>
+                                <span class="badge badge-primary badge-filter">
+                                    <a href="#"><i class="material-icons">close</i></a> Basic Angular
+                                </span>
+                                <span class="badge badge-primary badge-filter">
+                                    <a href="#"><i class="material-icons">close</i></a> Guide
+                                </span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </form>
+{% endblock content %}
+
+{% block js %}
+   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        
+    {% endblock js %}
+
+{% block domready %}
+    $('#modules').sortable({
+        stop: function(event, ui){
+            modules_order = {};
+            $('#modules').children().each(function(){
+                // update the order field
+                modules_order[$(this).data('id')] = $(this).index();
+            });
+            $.ajax({
+                type: 'POST',
+                url: '{% url "module_order" %}',
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'json',
+                data: JSON.stringify(modules_order)
+            });
+        }
+    });
+
+    $('ul.module-contents').each(function() {
+        $(this).sortable({
+            stop: function(event, ui) {
+                contents_order = {};
+                $(this).children().each(function(){
+                    contents_order[$(this).data('id')] = $(this).index();
+                    console.log(contents_order)
+    
+                });
+                $.ajax({
+                    type: 'POST',
+                    url: '{% url "content_order" %}',
+                    contentType: 'application/json; charset=utf-8',
+                    dataType: 'json',
+                    data: JSON.stringify(contents_order)
+                });
+            }
+        })
+    })
+
+// Add content slide
+$(".contenttype").click(function(e){
+    e.preventDefault();
+    if($(".card--raised").length){
+        $(".card--raised").hide()
+    }
+    $(`#${$(this).data("id")}`).slideToggle("slow")
+})
+
+// Image Preview
+function readURL(input) {
+    if(input.files && input.files[0]){
+        let reader = new FileReader();
+        reader.onload = function(e) {
+            let elementID = $(input).data("preview")
+            $(`#${elementID}`).attr('src', e.target.result);
+        }
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+
+$(".image-object").change(function() {
+    console.log(this)
+    readURL(this)
+})
+
+// js submission of forms
+$(".imagesubmitbtn").click(function(e){
+    e.preventDefault()
+    $(`form#${$(this).data("id")}`).submit()
+    
+})
+
+$(".filesubmitbtn").click(function(e){
+    e.preventDefault()
+    $(`form#${$(this).data("id")}`).submit()
+    
+})
+
+$(".textsubmitbtn").click(function(e){
+    e.preventDefault()
+    $(`form#${$(this).data("id")}`).submit()
+    
+})
+
+$(".videosubmitbtn").click(function(e){
+    e.preventDefault()
+    $(`form#${$(this).data("id")}`).submit()
+    
+})
+
+$("#intro-video-upload").click(function(e) {
+    e.preventDefault()
+    $("#id_intro_video").trigger('click')
+
+    $("#id_intro_video").change(function(e) {
+        let fileUrl = window.URL.createObjectURL(this.files[0])
+        $("#intro-video-preview").attr("src", fileUrl)
+    })
+})
+
+
+
+{% endblock domready %}

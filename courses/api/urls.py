@@ -1,0 +1,65 @@
+from django.urls import path, include
+
+from rest_framework import routers
+from .views import (CourseListAPIView,
+                    CourseDetailAPIView,
+                    CourseSectionContentAPIView,
+                    CourseSectionAPIView,
+                    CategoryListAPIView,
+                    CategoryDetailAPIView,
+                    CourseCreateView,
+                    CourseUpdateView,
+                    CourseDeleteView,
+                    InstructorCourseListAPIView,
+                    EnrolledCourseListAPIView,
+                    CourseContentCreateAPIView,
+                    CourseSectionAPICreateView,
+				    CourseContentUpdateAPIView,
+                    CourseContentDeleteAPIView,
+                    CourseSectionDeleteAPIView,
+                    CourseSectionUpdateAPIView,
+                    TopCoursesListAPIView,
+                    CourseContentApiView
+                    )
+
+# router = routers.DefaultRouter()
+# router.register(r'', CourseViewSet)
+
+urlpatterns = [
+    # path(r'', include(router.urls)),
+    path('', CourseListAPIView.as_view(), name="course-list"),
+    path('top/', TopCoursesListAPIView.as_view(), name="top_courses"),
+    path('me/created/', InstructorCourseListAPIView.as_view(),
+         name='instructor-course-list'),
+    path('me/enrolled/', EnrolledCourseListAPIView.as_view(),
+         name='student-course-list'),
+    path('create/', CourseCreateView.as_view(),
+         name="course-create"),
+    path('<course_id>/sections/<section_id>/<model_name>/content/create/',
+         CourseContentCreateAPIView.as_view(), name='course-content-add'),
+    path('<course_id>/sections/<section_id>/<model_name>/content/<content_id>/update/',
+         CourseContentUpdateAPIView.as_view(), name='course-content-update'),
+    path('<course_id>/sections/<section_id>/content/<content_id>/delete/',
+         CourseContentDeleteAPIView.as_view(), name='course-content-delete'),
+    path('<int:pk>/sections/create/',
+         CourseSectionAPICreateView.as_view(), name='course-section-add'),
+    path('<int:pk>/detail/',
+         CourseDetailAPIView.as_view(), name='course-detail'),
+    path('<int:pk>/edit/', CourseUpdateView.as_view(),
+         name='course-update'),
+    path('<int:pk>/delete/', 
+         CourseDeleteView.as_view(), name='course-delete'),
+    path('<int:course_id>/sections/',
+         CourseSectionAPIView.as_view(), name='section-list'),
+    path("<int:course_id>/sections/<int:section_id>/content/",
+         CourseSectionContentAPIView.as_view(), name="section-detail"),
+    path("<int:course_id>/all/content/",
+         CourseContentApiView.as_view(), name="course-content"),
+    path('<course_id>/sections/<int:section_id>/delete/',
+         CourseSectionDeleteAPIView.as_view(), name='course-section-delete'),
+    path('<course_id>/sections/<section_id>/update/',
+         CourseSectionUpdateAPIView.as_view(), name='course-section-update'),
+    path('categories/', CategoryListAPIView.as_view(), name="category-list"),
+    path('category/<pk>/', CategoryDetailAPIView.as_view(), name="category-detail"),
+
+]
